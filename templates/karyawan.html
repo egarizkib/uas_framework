@@ -1,0 +1,134 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% load static %}
+{% block content %}
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+     <title>UAS FP</title>
+     <meta name="description" content="">  
+     <meta name="author" content="">
+    
+    <!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="{% static 'css/base.css'%}">  
+   <link rel="stylesheet" href="{% static 'css/main.css'%}">
+   <link rel="stylesheet" href="{% static 'css/vendor.css'%}">     
+  
+
+   <!-- script
+   ================================================== -->   
+   <script src="{% static 'js/modernizr.js'%}"></script>
+   <script src="{% static 'js/pace.min.js'%}"></script>
+
+    <!-- mobile specific metas
+    ================================================== -->
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+      
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ </head>
+ <body id="top">
+
+	<!-- header 
+   ================================================== -->
+   <header>   	
+   	<div class="row">
+
+   		<div class="top-bar">
+   			<a class="menu-toggle" href="#"><span>Menu</span></a>
+
+	   		<div class="logo">
+		         <a href="index.html">EGAZTZY</a>
+		      </div>		      
+
+		   	<nav id="main-nav-wrap">
+					<ul class="main-navigation">
+						<li class="current"><a class="smoothscroll"  href="#intro" title="">Home</a></li>
+						<li><a class="smoothscroll"  href="{% url 'obat' %}">Tabel Obat</a></li>
+						<li><a class="smoothscroll"  href="{% url 'stok' %}">Tabel Stok</a></li>
+						<li><a class="smoothscroll"  href="{% url 'karyawan' %}">Tabel Karyawan</a></li>
+						<li><a class="smoothscroll"  href="{% url 'pelanggan' %}">Tabel Pelanggan</a></li>
+						<li><a class="smoothscroll"  href="{% url 'transaksi' %}">Tabel Transaksi</a></li>
+						<li><a class="smoothscroll"  href="#about" title="">Tentang saya</a></li>
+						<li><a class="smoothscroll"  href="#portfolio" title="">Portfolio</a></li>					
+						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>			
+					</ul>
+				</nav>    		
+   		</div> <!-- /top-bar --> 
+   		
+   	</div> <!-- /row --> 		
+   </header> <!-- /header -->
+
+
+<h2 class="align-center">Tabel Karyawan</h2>
+<p><a href="/addbrg" class="btn btn-primary">Tambah Data</a></p>
+{% for message in messages %}
+	{% if message %}
+		<div class="alert alert-success">{{ message }}</div>
+	{% endif %}
+{% endfor %}
+<div class="row contact-form"><h2 class="align-center">Tabel Karyawan</h2>
+<table border="1" class="table table-success table-striped">
+	 <tr>
+		<th>Id Karyawan</th>
+		<th>Nama Karyawan</th>
+		<th>Alamat</th>
+		<th>Jenis Kelamin</th>
+	    <th>Aksi</th>
+	</tr>
+
+{% for Karyawan in karyawans %}
+<tr>
+  <td>{{ Karyawan.id_karyawan }}</td>
+  <td>{{ Karyawan.nama_karyawan }}</td>
+  <td>{{ Karyawan.jenis_kelamin }}</td>
+  <td>{{ Karyawan.no_tlp }}</td>
+  <td><button class="btn btn-danger "data-bs-toggle="modal" data-bs-target="#hapus-{{ Karyawan.id }}">Hapus</button></td>
+
+  <!-- Modal -->
+<div class="modal fade" id="hapus-{{ Karyawan.id }}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5" id="staticBackdropLabel">Yakin Dihapus ?</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+  <p>Nama Karyawan :: {{ Karyawan.nama }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+    <a href="/hapuskaryawan/{{karyawan.id}}" class="btn btn-danger">Hapus</button>
+  </div>
+</div>
+</div>
+</div>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
